@@ -31,8 +31,8 @@ jobs:
           name: Seminar for Applied Mathematics ETH Zürich
           link: https://math.ethz.ch/sam
       description: Coding Assistant for c++ Finite Element Library "LehrFEM++" used for the course Numerical Methods for Partial Differential Equations taught by Prof. Dr. Ralf Hiptmair.
-      from: 'Summer 2024'
-      to: '_'
+      from: 'June 2024'
+      to: ''
       tags:
           - Coding
           - Documentation
@@ -45,7 +45,7 @@ jobs:
       company:
           name: Armstrong Systems
           link: https://armstrongsystems.io/
-      description: Founded Armstrong Systems, consulting work for clients in Zürich.
+      description: Founded Armstrong Systems, Software consulting for clients in Zürich. Full stack of various projects including a web-based data management tool, visualization dashboards and large scale data ingestion pipelines.
       from: '2022'
       to: ''
       tags:
@@ -91,7 +91,7 @@ jobs:
           - Algorithms
           - Data structures
 
-    - position: Teaching assistant and Developer
+    - position: Teaching assistant and Full Stack Developer
       company:
           name: Inter-university research group Industrial Software, Vienna University of Technology
           link: https://www.inso.tuwien.ac.at

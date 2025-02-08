@@ -6,14 +6,13 @@
 #set page(margin: 20mm)
 
 #show heading.where(level: 1): it => [
-  #set text(size: 14pt, font: heading_font, weight: "semibold")
+  #set text(size: eval(settings.font.size.heading), font: heading_font, weight: "semibold")
   #it
   #v(0.2em)
 ]
 
-#set par(leading: eval(settings.paragraph.leading))
 
-#set text(size: eval(settings.font.size.body), font: "Source Serif 4")
+#set text(size: eval(settings.font.size.body))
 
 #let sidebarSection = {
   [
@@ -23,9 +22,7 @@
       #figure(image("images/headshot.jpg"), placement: top)
     ]
 
-    #par(
-      justify: true,
-    )[
+    #par(justify: true)[
 
       #par[
         #set text(size: eval(settings.font.size.sidebar))
@@ -120,7 +117,6 @@
   grid(
     columns: (1.618fr, 1fr),
     column-gutter: 1em,
-    mainSection,
-    sidebarSection,
+    mainSection, sidebarSection,
   )
 }

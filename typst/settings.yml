@@ -1,8 +1,8 @@
 font:
     size:
-        heading: 13pt
-        body: 10pt
-        sidebar: 10pt
+        heading: 15pt
+        body: 11pt
+        sidebar: 11pt
 
 paragraph:
     leading: 5pt
