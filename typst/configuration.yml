@@ -26,13 +26,28 @@ skills:
         - Scrum and Arduino/ESP8266/32 based Hardware development
 
 jobs:
+    - position: Research Assistant
+      company:
+          name: Computational and Applied Mathematics Laboratory (CAMLab) ETH Zürich
+          link: https://math.ethz.ch/sam
+      description: Research at CAMLab with Prof. Siddhartha Mishra on foundation models for PDEs
+      from: 'Spring 2025'
+      to: ''
+      tags:
+          - Coding
+          - Documentation
+          - Finite Element Method
+          - FEM
+          - LehrFEM
+          - C++
+
     - position: Coding Assistant for LehrFEM++ Finite Element Library
       company:
           name: Seminar for Applied Mathematics ETH Zürich
           link: https://math.ethz.ch/sam
       description: Coding Assistant for c++ Finite Element Library "LehrFEM++" used for the course Numerical Methods for Partial Differential Equations taught by Prof. Dr. Ralf Hiptmair.
-      from: 'June 2024'
-      to: ''
+      from: 'Fall 2024'
+      to: '_'
       tags:
           - Coding
           - Documentation
@@ -45,7 +60,7 @@ jobs:
       company:
           name: Armstrong Systems
           link: https://armstrongsystems.io/
-      description: Founded Armstrong Systems, Software consulting for clients in Zürich. Full stack of various projects including a web-based data management tool, visualization dashboards and large scale data ingestion pipelines.
+      description: Founded Armstrong Systems, Software consulting for clients in Zürich. Full stack development of various projects including a web-based data management tool, visualization dashboards and large scale data ingestion pipelines.
       from: '2022'
       to: ''
       tags:
