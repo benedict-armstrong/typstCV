@@ -26,20 +26,20 @@ skills:
         - Scrum and Arduino/ESP8266/32 based Hardware development
 
 jobs:
-    - position: Research Assistant
-      company:
-          name: Computational and Applied Mathematics Laboratory (CAMLab) ETH Zürich
-          link: https://math.ethz.ch/sam
-      description: Research at CAMLab with Prof. Siddhartha Mishra on foundation models for PDEs
-      from: 'Spring 2025'
-      to: ''
-      tags:
-          - Coding
-          - Documentation
-          - Finite Element Method
-          - FEM
-          - LehrFEM
-          - C++
+    # - position: Research Assistant
+    #   company:
+    #       name: Computational and Applied Mathematics Laboratory (CAMLab) ETH Zürich
+    #       link: https://math.ethz.ch/sam
+    #   description: Research at CAMLab with Prof. Siddhartha Mishra on foundation models for PDEs
+    #   from: 'Spring 2025'
+    #   to: ''
+    #   tags:
+    #       - Coding
+    #       - Documentation
+    #       - Finite Element Method
+    #       - FEM
+    #       - LehrFEM
+    #       - C++
 
     - position: Coding Assistant for LehrFEM++ Finite Element Library
       company:
