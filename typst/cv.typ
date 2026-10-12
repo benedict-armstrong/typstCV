@@ -25,18 +25,16 @@
     #set text(size: eval(settings.font.size.sidebar))
     #par(
       [
-        Born and raised in Vienna, currently living in Zürich.
-        In my free time, I like to code, tinker with electronics, design and make
-        furniture, and generally enjoy all types of DIY/maker projects. I am also
-        interested in FPV drones, IoT prototyping, 3D printing, tennis, cycling,
-        triathlons, and of course, all things computer science.
+        Born and raised in Vienna, currently living in Zürich. In my free time, I like to code, tinker with electronics,
+        design and make furniture, and generally enjoy all types of DIY/maker projects. I am also interested in FPV
+        drones, IoT prototyping, 3D printing, tennis, cycling, triathlons, and of course, all things computer science.
       ],
       justify: true,
     )
     #[
       *Email:* #link("mailto:contact@benarmstro.ng") \
-      *Phone:* #link("tel:+41784215042") \
-      *LinkedIn:* #link("www.linkedin.com/in/benedictarmstrong")[benedictarmstrong] \
+      *Phone:* #link("tel:+41 78 4215042") \
+      *LinkedIn:* #link("https://www.linkedin.com/in/benedictarmstrong")[benedictarmstrong] \
       *GitHub:* #link("https://github.com/benedict-armstrong")[benedict-armstrong] \
     ]
 
@@ -80,8 +78,7 @@
       for job in configuration.jobs [
         - #[
             #set text(size: 11pt)
-            *#job.position*,
-            #link(job.company.link)[#job.company.name] \
+            *#job.position*, #link(job.company.link)[#job.company.name] \
             #job.from #if job.to != "_" [— #job.to] \
             #[
               #par[

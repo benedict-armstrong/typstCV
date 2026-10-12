@@ -23,31 +23,35 @@ skills:
         - Mongo
         - Postgres
         - Git
-        - Scrum and Arduino/ESP8266/32 based Hardware development
+        - Arduino/ESP8266/32 based Hardware development
+        - Scrum
 
 jobs:
-    # - position: Research Assistant
-    #   company:
-    #       name: Computational and Applied Mathematics Laboratory (CAMLab) ETH Zürich
-    #       link: https://math.ethz.ch/sam
-    #   description: Research at CAMLab with Prof. Siddhartha Mishra on foundation models for PDEs
-    #   from: 'Spring 2025'
-    #   to: ''
-    #   tags:
-    #       - Coding
-    #       - Documentation
-    #       - Finite Element Method
-    #       - FEM
-    #       - LehrFEM
-    #       - C++
+    - position: ML Research Intern
+      company:
+          name: "Computational Applied Mathematics & AI Lab (CAMAIL) at
+              ELLIS Institute Tübingen and Max Planck Institute for Intelligent Systems"
+          link: "https://camail.org"
+      description: Research at CAMAIL supervised by T. Konstantin Rusch working on ML based detection algorithms for Gravitational Wave Physics (in collaboration with the LIGO Lab at MIT).
+      from: "June 2025"
+      to: "Summer 2026"
+      tags:
+          - Coding
+          - Machine Learning
+          - Gravitational Wave Physics
+          - Python
+          - PyTorch
+          - PyTorch Lightning
+          - JAX
+          - Equinox
 
     - position: Coding Assistant for LehrFEM++ Finite Element Library
       company:
           name: Seminar for Applied Mathematics ETH Zürich
-          link: https://math.ethz.ch/sam
-      description: Coding Assistant for c++ Finite Element Library "LehrFEM++" used for the course Numerical Methods for Partial Differential Equations taught by Prof. Dr. Ralf Hiptmair.
-      from: 'Fall 2024'
-      to: '_'
+          link: "https://math.ethz.ch/sam"
+      description: Coding Assistant for C++ Finite Element Library "LehrFEM++" used for the course Numerical Methods for Partial Differential Equations taught by Prof. Dr. Ralf Hiptmair.
+      from: "Fall 2024"
+      to: "_"
       tags:
           - Coding
           - Documentation
@@ -59,10 +63,10 @@ jobs:
     - position: Freelance Software Engineer
       company:
           name: Armstrong Systems
-          link: https://armstrongsystems.io/
+          link: "https://armstrongsystems.io/"
       description: Founded Armstrong Systems, Software consulting for clients in Zürich. Full stack development of various projects including a web-based data management tool, visualization dashboards and large scale data ingestion pipelines.
-      from: '2022'
-      to: ''
+      from: "2022"
+      to: "2024"
       tags:
           - Data Analysis
           - Data Visualization
@@ -70,10 +74,10 @@ jobs:
     - position: Teaching Assistant for Software Engineering Fundamentals
       company:
           name: Department of Computer Science ETH Zürich
-          link: https://inf.ethz.ch/
+          link: "https://inf.ethz.ch/"
       description: Teaching Assistant for the course Software Engineering Fundamentals
-      from: 'Spring Semester 2024'
-      to: '_'
+      from: "Spring Semester 2024"
+      to: "_"
       tags:
           - Teaching
           - Python
@@ -82,10 +86,10 @@ jobs:
     - position: Head teaching assistant for Computer Science II
       company:
           name: Department of Computer Science ETH Zürich
-          link: https://inf.ethz.ch/
+          link: "https://inf.ethz.ch/"
       description: I was responsible for the organization of the teaching assistants and the exercise classes. In addition I worked closely with the lectures preparing exercise material and made sure the course runs smoothly.
-      from: 'August 2023'
-      to: 'February 2024'
+      from: "August 2023"
+      to: "February 2024"
       tags:
           - Teaching
           - Management
@@ -96,10 +100,10 @@ jobs:
     - position: Teaching assistant for Computer Science II
       company:
           name: Department of Computer Science ETH Zürich
-          link: https://inf.ethz.ch/
+          link: "https://inf.ethz.ch/"
       description: I taught one of the exercise classes and reviewed student submissions. The course provides the foundations for the design and analysis of algorithms. Classical problems ranging from sorting up to problems on graphs are used to discuss common data structures, algorithms and algorithm design paradigms.
-      from: 'August 2022'
-      to: 'February 2023'
+      from: "August 2022"
+      to: "February 2023"
       tags:
           - Teaching
           - C++
@@ -109,10 +113,10 @@ jobs:
     - position: Teaching assistant and Full Stack Developer
       company:
           name: Inter-university research group Industrial Software, Vienna University of Technology
-          link: https://www.inso.tuwien.ac.at
+          link: "https://www.inso.tuwien.ac.at"
       description: Together with a small team we developed security challenges for teams of students to compete in a Capture the Flag (CTF) competition. It was held as part of the course "Security for Systems Engineering" at TU Wien. In addition I supervised students during the competition and helped administering exams later in the semester.
-      from: 'Spring 2021'
-      to: '_'
+      from: "Spring 2021"
+      to: "_"
       tags:
           - Teaching
           - C
@@ -122,45 +126,53 @@ jobs:
     - position: Paramedic (civil-service)
       company:
           name: Samariterbund
-          link: https://www.samariterbund.net
+          link: "https://www.samariterbund.net"
       description: Worked as a paramedic in Vienna as part of my civil service.
-      from: '2018'
-      to: '2019'
+      from: "2018"
+      to: "2019"
       tags:
           -
-    - position: Summer internship
-      company:
-          name: Tecton Consult
-          link: https://engineering.tecton-consult.at/?lang=en
-      description: Summer internship at Tecton Consult, a civil engineering company in Vienna.
-      from: 'Summer 2018'
-      to: '_'
-      tags:
-          -
+    # - position: Summer internship
+    #   company:
+    #       name: Tecton Consult
+    #       link: "https://engineering.tecton-consult.at/?lang=en"
+    #   description: Summer internship at Tecton Consult, a civil engineering company in Vienna.
+    #   from: "Summer 2018"
+    #   to: "_"
+    #   tags:
+    #       -
     - position: Various summer jobs
       company:
           name: Various
-          link: ''
+          link: "."
       description: Various summer jobs in Vienna including working as a Postman, food delivery driver and math/CS tutor for high school students.
-      from: 'Summers 2017-2021'
-      to: '_'
+      from: "Summers 2017-2021"
+      to: "_"
       tags:
           -
 
 education:
     - university:
-          name: 'ETH Zürich'
-          link: 'https://ethz.ch/'
-      degree: 'B.Sc.'
+          name: "ETH Zürich"
+          link: "https://ethz.ch/"
+      degree: "M.Sc."
+      major: Computational Science and Engineering
+      track: Robotics
+      from: "2026"
+      to: ""
+    - university:
+          name: "ETH Zürich"
+          link: "https://ethz.ch/"
+      degree: "B.Sc."
       major: Computational Science and Engineering, Robotics track
       track: Robotics
-      from: '2021'
-      to: ''
+      from: "2021"
+      to: "2025"
     - university:
           name: Vienna University of Technology
-          link: 'https://www.tuwien.at'
-      degree: 'B.Sc.'
+          link: "https://www.tuwien.at"
+      degree: "B.Sc."
       major: Computer Science, Software & Information Engineering track
       track: Software & Information Engineering
-      from: '2019'
-      to: '2021 (switch to ETH)'
+      from: "2019"
+      to: "2021 (switch to ETH)"
