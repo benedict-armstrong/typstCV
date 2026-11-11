@@ -1,8 +1,8 @@
 ---
 name: Benedict Armstrong
-headline: Machine learning for physics · Computational Science and Engineering, ETH Zürich
+headline: Computational Science and Engineering, ETH Zürich
 contact:
-    email: contact@benarmstro.ng
+    email: benedict.armstrong@gmail.com
     phone: "+41 78 4215042"
     linkedin: benedictarmstrong
     github: benedict-armstrong

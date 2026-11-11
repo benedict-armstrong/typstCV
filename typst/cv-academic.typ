@@ -20,11 +20,11 @@
   footer: context {
     set text(size: 8pt, fill: muted)
     let n = counter(page).get().first()
-    if n == 1 [
-      _Curriculum Vitae. Compiled #datetime.today().display("[month repr:long] [year]")._
-    ] else [
-      _#cv.name — Curriculum Vitae_
-    ]
+    // if n == 1 [
+    //   _Curriculum Vitae. Compiled #datetime.today().display("[month repr:long] [year]")._
+    // ] else [
+    //   _#cv.name — Curriculum Vitae_
+    // ]
     h(1fr)
     counter(page).display("1 of 1", both: true)
   },
@@ -106,7 +106,10 @@
     let n = counter(figure.where(kind: ref-kind)).get().first()
     set align(left)
     set text(size: 9pt)
-    grid(columns: (1.8em, 1fr), [[#n]], body)
+    grid(
+      columns: (1.8em, 1fr),
+      [[#n]], body,
+    )
   })
   #label(key)
 ]
@@ -114,31 +117,37 @@
 #let author-list(authors, max: 6) = {
   let fmt(a) = if a == cv.name [*#a*] else [#a]
   if authors.len() <= max { authors.map(fmt).join(", ", last: " and ") } else {
-    authors.slice(0, max).map(fmt).join(", ") + [, et al. (#authors.len() authors)]
+    authors.slice(0, max).map(fmt).join(", ") + [, et al.]
   }
 }
 
 /* ---------- Title block ---------- */
 
-#line(length: 100%, stroke: 2.4pt)
-#v(-0.1em)
+// #line(length: 100%, stroke: 2.4pt)
+#v(0.1em)
 #align(center)[
   #text(size: 19pt, weight: "bold")[#cv.name] \
-  #v(-0.35em)
+  #v(0.35em)
   #text(size: 10.5pt, style: "italic")[Curriculum Vitae]
 ]
-#v(-0.25em)
-#line(length: 100%, stroke: 0.6pt)
+#v(0.25em)
+// #line(length: 100%, stroke: 0.6pt)
 #v(0.15em)
 #align(center, text(size: 9pt)[
+  #v(0.2em)
   #cv.headline \
-  #set text(size: 8.5pt, fill: accent)
+  #v(0.2em)
+  #set text(font: "DejaVu Sans Mono", size: 7.5pt, fill: accent)
   #(
-    text(font: "DejaVu Sans Mono", size: 7.8pt, link("mailto:" + cv.contact.email, cv.contact.email)),
-    link("https://github.com/" + cv.contact.github)[github.com/#cv.contact.github],
-    link("https://www.linkedin.com/in/" + cv.contact.linkedin)[linkedin.com/in/#cv.contact.linkedin],
-    link("tel:" + cv.contact.phone.replace(" ", ""), cv.contact.phone),
-  ).map(box).join[ #h(0.2em)·#h(0.2em) ]
+    (
+      link("mailto:" + cv.contact.email, cv.contact.email),
+      link("https://github.com/" + cv.contact.github)[github.com/#cv.contact.github],
+      link("https://www.linkedin.com/in/" + cv.contact.linkedin)[linkedin.com/in/#cv.contact.linkedin],
+      //link("tel:" + cv.contact.phone.replace(" ", ""), cv.contact.phone),
+    )
+      .map(box)
+      .join[ #h(0.05em)·#h(0.05em) ]
+  )
 ])
 #v(0.5em)
 #pad(x: 9mm, text(size: 9.5pt, cv.summary))
@@ -151,7 +160,7 @@
 #let text-width = 210mm - 2 * 25mm
 #let portrait = box(width: (text-width - fig-gutter) / (1 + phi), figure(
   image("images/headshot.jpg", width: 100%),
-  caption: [#cv.name, Zürich. #cv.about],
+  caption: [#cv.about],
 ))
 
 /* ---------- Body ---------- */
@@ -238,16 +247,17 @@
   #parbreak()
 ]
 
-= Skills
+// = Skills
 
-#figure(
-  booktabs(
-    columns: (auto, 1fr),
-    align: (left, left),
-    header: ([Area], [Tools]),
-    ..cv.skills.groups.pairs().map(((k, v)) => (k, v.join(", "))).flatten(),
-    table.hline(stroke: 0.3pt),
-    [Spoken languages], cv.skills.languages.join(", "),
-  ),
-  caption: [Technical skills.],
-)
+// #figure(
+//   booktabs(
+//     columns: (auto, 1fr),
+//     align: (left, left),
+//     header: ([Area], [Tools]),
+//     ..cv.skills.groups.pairs().map(((k, v)) => (k, v.join(", "))).flatten(),
+//     table.hline(stroke: 0.3pt),
+//     [Spoken languages],
+//     cv.skills.languages.join(", "),
+//   ),
+//   caption: [Technical skills.],
+// )
