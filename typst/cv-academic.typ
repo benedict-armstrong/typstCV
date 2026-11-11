@@ -149,9 +149,9 @@
       .join[ #h(0.05em)·#h(0.05em) ]
   )
 ])
-#v(0.5em)
+#v(2em)
 #pad(x: 9mm, text(size: 9.5pt, cv.summary))
-#v(0.3em)
+#v(2em)
 
 /* ---------- Figure 1: wrapped headshot ---------- */
 
@@ -176,8 +176,9 @@
   = Research <sec-research>
 
   #entry(r.title, [#r.position, #link(r.group.link, r.group.name)], when: (r.from, r.to)) \
+  #v(0.5em)
   #r.institution, in collaboration with the #r.collaboration; supervised by #r.supervisor.
-
+  #v(0.5em)
   #r.explainer
 
 ]
@@ -186,7 +187,7 @@
   #highlights(r.highlights)
 
   Results appeared at #cv.publications.map(p => [#p.venue_short #ref(label(p.key))]).join(", ") and were presented at #r.talks.map(t => [#t.event (#t.venue) #ref(label(t.key))]).join(" and ").
-  _Tools:_ #r.tags.join(", ").
+  // _Tools:_ #r.tags.join(", ").
 
   = Publications and Talks
 
@@ -216,6 +217,7 @@
   #job.description
   #highlights(job.highlights)
   #parbreak()
+  #v(1em)
 ]
 
 = Teaching
@@ -241,10 +243,11 @@
 = Projects
 
 #for p in cv.projects [
-  #block(sticky: true, below: 0.55em)[*#p.name* #h(0.3em)·#h(0.3em) #link(p.link, p.display)]
+  #block(sticky: true, below: 0.55em)[*#p.name*: #link(p.link, p.display)]
   #p.description
   #if p.tags.len() > 0 [_Stack:_ #p.tags.join(", ").]
   #parbreak()
+  #v(1em)
 ]
 
 // = Skills
