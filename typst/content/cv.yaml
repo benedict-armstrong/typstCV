@@ -1,0 +1,18 @@
+# Entry point for all CV content.
+#
+#   *.md    prose, with structured fields in YAML frontmatter. The Markdown body is rendered as-is.
+#   *.yaml  small lists of structured data (tables, references).
+#
+# Typst cannot list a directory, so sections made of one file per entry are ordered here.
+# Dates: `from`/`to`; `to: present` means ongoing, no `to` means a single point in time.
+# Short text fields in frontmatter and YAML (highlights, descriptions) also accept inline Markdown.
+
+experience:
+    - armstrong-systems
+    - lehrfem
+    - paramedic
+    - summer-jobs
+
+projects:
+    - presio
+    - acceptodds

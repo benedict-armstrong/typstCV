@@ -1,0 +1,8 @@
+languages: [English, German]
+# Grouped for the table in the paper variants; other variants flatten the groups.
+technologies:
+    Machine learning: [Python, PyTorch, JAX]
+    Languages: [C++, C, Java, JavaScript, PHP, SQL]
+    Web: [Angular, React, NextJS, Svelte(Kit), FastAPI, REST, HTML, CSS]
+    Data & infrastructure: [Mongo, Postgres, Docker, Git]
+    Other: [Arduino/ESP8266/32 based hardware development, Scrum]

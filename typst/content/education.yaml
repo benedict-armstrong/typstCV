@@ -1,0 +1,24 @@
+- university:
+      name: ETH Zürich
+      link: "https://ethz.ch/"
+  degree: M.Sc.
+  major: Computational Science and Engineering
+  track: Robotics
+  from: 2026
+  to: present
+- university:
+      name: ETH Zürich
+      link: "https://ethz.ch/"
+  degree: B.Sc.
+  major: Computational Science and Engineering
+  track: Robotics
+  from: 2021
+  to: 2025
+- university:
+      name: Vienna University of Technology
+      link: "https://www.tuwien.at"
+  degree: B.Sc.
+  major: Computer Science
+  track: Software & Information Engineering
+  from: 2019
+  to: 2021 (switch to ETH)

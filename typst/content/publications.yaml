@@ -1,0 +1,38 @@
+- key: phyts
+  title: "PhyTS: A Benchmark for Scientific Time Series"
+  authors:
+      - Benedict Armstrong
+      - Jeroen Audenaert
+      - Hannah P. Binney
+      - Alice Cheng
+      - Maarten De Vos
+      - Luis F. Domingues
+      - Allison Eto
+      - Mary Feliz
+      - Joseph Formaggio
+      - Jessica Fry
+      - Philip Harris
+      - Ilay Kamai
+      - Erik Katsavounidis
+      - Mykyta Kliapets
+      - Konstantinos Kontras
+      - Aobo Li
+      - Paul Liang
+      - Daniel Muthukrishna
+      - Christina Reissel
+      - Daniela Rus
+      - T. Konstantin Rusch
+      - Avi Shporer
+      - Penny L. Slocum
+      - Talia E. Weiss
+      - Lindley Winslow
+      - Kyungseop Yoon
+  venue: Advances in Neural Information Processing Systems (NeurIPS)
+  venue_short: NeurIPS 2026
+  location: Sydney
+  year: 2026
+  link: "https://neurips.cc/virtual/2026/loc/sydney/poster/139305"
+  summary: >-
+      A benchmark of high-precision time series from gravitational-wave detection, dark matter searches,
+      neutrino mass measurement and exoplanet discovery, with standard tasks, splits and baselines for
+      denoising, signal recovery and parameter estimation.

@@ -1,4 +1,5 @@
-#let configuration = yaml("configuration.yml")
+#import "lib/content.typ": load-cv
+#let configuration = load-cv()
 #let settings = yaml("settings.yml")
 
 #let heading_font = "Poppins"
@@ -11,8 +12,23 @@
   #v(0.2em)
 ]
 
+#show heading.where(level: 2): it => [
+  #set text(size: 12pt, font: heading_font, weight: "medium")
+  #it
+]
 
 #set text(size: eval(settings.font.size.body))
+
+// "_" means a single point in time, "" means ongoing.
+#let dates(from, to) = {
+  if to == "_" [#from] else if to == "" [#from — present] else [#from — #to]
+}
+
+#let highlights(items) = {
+  if items != none and items.len() > 0 {
+    list(..items.map(h => [#h]))
+  }
+}
 
 #let sidebarSection = {
   [
@@ -23,19 +39,66 @@
     ]
 
     #set text(size: eval(settings.font.size.sidebar))
-    #par(
-      [
-        Born and raised in Vienna, currently living in Zürich. In my free time, I like to code, tinker with electronics,
-        design and make furniture, and generally enjoy all types of DIY/maker projects. I am also interested in FPV
-        drones, IoT prototyping, 3D printing, tennis, cycling, triathlons, and of course, all things computer science.
-      ],
-      justify: true,
-    )
+    #par(configuration.about, justify: true)
     #[
-      *Email:* #link("mailto:contact@benarmstro.ng") \
-      *Phone:* #link("tel:+41 78 4215042") \
-      *LinkedIn:* #link("https://www.linkedin.com/in/benedictarmstrong")[benedictarmstrong] \
-      *GitHub:* #link("https://github.com/benedict-armstrong")[benedict-armstrong] \
+      *Email:* #link("mailto:" + configuration.contact.email) \
+      *Phone:* #link("tel:" + configuration.contact.phone) \
+      *LinkedIn:* #link("https://www.linkedin.com/in/" + configuration.contact.linkedin)[#configuration.contact.linkedin] \
+      *GitHub:* #link("https://github.com/" + configuration.contact.github)[#configuration.contact.github] \
+    ]
+
+    = Projects
+
+    #for project in configuration.projects [
+      #link(project.link)[*#project.name*] · #link(project.link)[#project.display] \
+      #par(project.description, justify: true)
+      #v(0.5em)
+    ]
+
+    = Skills
+
+    #{
+      let languages = configuration.skills.languages.join(", ")
+      let technologies = configuration.skills.technologies.join(", ")
+      [
+        - #languages
+        - #technologies
+      ]
+    }
+
+  ]
+}
+
+#let restSection = {
+  [
+    = Experience
+
+    #{
+      for job in configuration.jobs [
+        - #[
+            #set text(size: 11pt)
+            *#job.position*, #if job.company.link == none [#job.company.name] else [#link(job.company.link)[#job.company.name]] #h(1fr) #dates(job.from, job.to)
+            #[
+              #par[
+                #set text(size: eval(settings.font.size.body))
+                #job.description
+              ]
+            ]
+            #highlights(job.highlights)
+          ]
+        #v(0.6em)
+      ]
+    }
+
+    = Teaching
+
+    #for group in configuration.teaching [
+      #link(group.institution.link)[*#group.institution.name*]
+      #for role in group.roles [
+        - *#role.position*, _#role.course _ #h(1fr) #dates(role.from, role.to) \
+          #role.description
+      ]
+      #v(0.6em)
     ]
 
   ]
@@ -48,12 +111,11 @@
       #set text(font: heading_font)
       #[
         #set text(size: 20pt, weight: "medium")
-        *Benedict Armstrong*
+        *#configuration.name*
       ]
       #[
         #set text(size: 10pt)
-        #link("mailto:contact@benarmstro.ng")[contact\@benarmstro.ng] #h(1fr)
-        // #link("https://benarmstro.ng")[benarmstro.ng]
+        #link("mailto:" + configuration.contact.email)[#configuration.contact.email] #h(1fr)
       ]
     ]
     = Education
@@ -65,49 +127,45 @@
             #[
               #link(place.university.link)[*#place.university.name*]
             ] \
-            #place.degree #place.major \
-            #place.from — #place.to \
+            #place.degree #place.major, #place.track track \
+            #dates(place.from, place.to) \
           ]
-          #v(1em)
+          #v(0.4em)
       ]
     }
 
-    = Experience
+    = Research
 
     #{
-      for job in configuration.jobs [
-        - #[
-            #set text(size: 11pt)
-            *#job.position*, #link(job.company.link)[#job.company.name] \
-            #job.from #if job.to != "_" [— #job.to] \
-            #[
-              #par[
-                #set text(size: eval(settings.font.size.body))
-                #job.description
-              ]
-            ]
-            // #{
-            //   set text(
-            //     size: eval(settings.font.size.tags),
-            //   )
-            //   let tag_line = job.tags.join(" • ")
-            //   tag_line
-            // }
-          ]
-        #v(1em)
-      ]
-    }
-
-    = Languages and Technologies
-
-    #{
-      let languages = configuration.skills.languages.join(", ")
-      let technologies = configuration.skills.technologies.join(", ")
+      let r = configuration.research
       [
-        - #languages
-        - #technologies
+        - #[
+            *#r.title*, #r.position \
+            #link(r.group.link)[#r.group.name], #r.institution \
+            In collaboration with the #r.collaboration · supervised by #r.supervisor \
+            #dates(r.from, r.to)
+            #par(r.explainer, justify: true)
+            #highlights(r.highlights)
+          ]
       ]
     }
+
+    == Talks
+
+    #for talk in configuration.research.talks [
+      - #link(talk.link)[_#talk.title _] \
+        #talk.speaker · #talk.event, #talk.venue, #talk.date
+    ]
+
+    = Publications
+
+    #for pub in configuration.publications [
+      - #link(pub.link)[*#pub.title*] \
+        *#pub.authors.first()*, #pub.authors.slice(1, 3).join(", "), … , #pub.authors.last() (#pub.authors.len() authors) \
+        _#pub.venue_short _, #pub.location
+      #v(0.6em)
+    ]
+
   ]
 }
 
@@ -118,3 +176,5 @@
     mainSection, sidebarSection,
   )
 }
+
+#restSection

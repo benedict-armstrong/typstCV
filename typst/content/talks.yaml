@@ -1,0 +1,14 @@
+- key: talk-cern
+  title: Linear Oscillatory State-Space Models for Binary Neutron Star Detection
+  speaker: Benedict Armstrong
+  event: AI for Gravitational Waves Workshop
+  venue: CERN, Geneva
+  date: May 2026
+  link: "https://indico.cern.ch/event/1640502/contributions/7028117/"
+- key: talk-fastml
+  title: Direct Parameter Estimation of Binary Neutron Star Mergers with State Space Models
+  speaker: Kevin (Kyungseop) Yoon
+  event: Fast Machine Learning for Science Conference 2026
+  venue: UC San Diego
+  date: September 2026
+  link: "https://indico.cern.ch/event/1654479/contributions/7189046/"

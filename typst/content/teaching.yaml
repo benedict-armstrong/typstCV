@@ -1,0 +1,45 @@
+# Teaching roles, grouped by institution.
+- institution:
+      name: Department of Computer Science, ETH Zürich
+      link: "https://inf.ethz.ch/"
+  roles:
+      - position: Teaching Assistant
+        course: Software Engineering Fundamentals
+        from: Spring Semester 2024
+        description: Teaching Assistant for the course Software Engineering Fundamentals.
+        # PLACEHOLDER
+        highlights:
+            - Led a weekly exercise session and gave feedback on students' Python projects.
+      - position: Head Teaching Assistant
+        course: Computer Science II
+        from: August 2023
+        to: February 2024
+        description: >-
+            I was responsible for the organization of the teaching assistants and the exercise classes. In addition
+            I worked closely with the lecturers preparing exercise material and made sure the course ran smoothly.
+        highlights:
+            - Coordinated the team of teaching assistants and the weekly exercise classes.
+            - Prepared exercise material together with the lecturers.
+      - position: Teaching Assistant
+        course: Computer Science II
+        from: August 2022
+        to: February 2023
+        description: >-
+            I taught one of the exercise classes and reviewed student submissions. The course provides the
+            foundations for the design and analysis of algorithms, from sorting to graph problems.
+        highlights:
+            - Taught a weekly exercise class and reviewed student submissions.
+- institution:
+      name: Research Group Industrial Software (INSO), TU Wien
+      link: "https://www.inso.tuwien.ac.at"
+  roles:
+      - position: Teaching Assistant and Full Stack Developer
+        course: Security for Systems Engineering
+        from: Spring 2021
+        description: >-
+            Together with a small team we developed security challenges for teams of students to compete in a
+            Capture the Flag (CTF) competition. In addition I supervised students during the competition and
+            helped administer exams later in the semester.
+        highlights:
+            - Developed security challenges for a student Capture the Flag (CTF) competition with a small team.
+            - Supervised students during the competition and helped administer exams.
