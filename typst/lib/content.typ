@@ -55,6 +55,7 @@
   let projects = manifest.projects.map(slug => {
     let (meta, body) = md-file("projects/" + slug + ".md")
     meta.description = body
+    meta.repo = meta.at("repo", default: none)
     meta.tags = meta.at("tags", default: ())
     meta
   })

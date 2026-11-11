@@ -243,9 +243,9 @@
 = Projects
 
 #for p in cv.projects [
-  #block(sticky: true, below: 0.55em)[*#p.name*: #link(p.link, p.display)]
+  #block(sticky: true, below: 0.55em)[*#p.name*: #link(p.link, p.display)#if p.repo != none [ · #link(p.repo)[GitHub]]]
   #p.description
-  #if p.tags.len() > 0 [_Stack:_ #p.tags.join(", ").]
+  // #if p.tags.len() > 0 [_Stack:_ #p.tags.join(", ").]
   #parbreak()
   #v(1em)
 ]
