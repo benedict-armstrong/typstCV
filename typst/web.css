@@ -1,0 +1,111 @@
+/* Styles for the HTML export of cv.typ (inlined into the page at compile time). */
+:root {
+  --accent: #1f4e79;
+  --muted: #696969;
+  --text: #1a1a1a;
+  --bg: #fdfdfc;
+  --rule: #1a1a1a;
+  --rule-light: #c8c8c8;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --accent: #8db8e3;
+    --muted: #a0a0a0;
+    --text: #e6e6e6;
+    --bg: #161616;
+    --rule: #e6e6e6;
+    --rule-light: #555;
+  }
+}
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0 auto;
+  max-width: 46rem;
+  padding: 3rem 1rem 4rem;
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Latin Modern Roman", "Computer Modern Serif", "CMU Serif", "New Computer Modern", Georgia, serif;
+  font-size: 1.0625rem;
+  line-height: 1.5;
+  text-align: justify;
+  hyphens: auto;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+p { margin: 0.6em 0; }
+ul { padding-left: 1.3em; margin: 0.5em 0; }
+li { margin: 0.25em 0; }
+
+/* Title block */
+header { text-align: center; margin-bottom: 2.5rem; hyphens: manual; }
+.download { margin: -0.8em 0 1.8em; }
+.download a {
+  display: inline-block;
+  padding: 0.3em 0.9em;
+  border: 1px solid var(--accent);
+  border-radius: 999px;
+  font-size: 0.85rem;
+}
+.download a:hover { background: var(--accent); color: var(--bg); text-decoration: none; }
+@media print { .download { display: none; } }
+h1 { font-size: 2rem; margin: 0; }
+.subtitle { font-style: italic; margin: 0.2em 0 1em; }
+.headline { margin: 0.2em 0; font-size: 0.95rem; }
+.contact {
+  margin: 0.3em 0 1.8em;
+  font-family: "DejaVu Sans Mono", ui-monospace, Menlo, monospace;
+  font-size: 0.8rem;
+}
+.summary { text-align: justify; padding: 0 2rem; font-size: 0.97rem; }
+
+/* Sections */
+h2 { font-size: 1.2rem; margin: 2em 0 0.7em; clear: none; }
+h2 .num { display: inline-block; min-width: 1.6em; }
+
+/* Entries: period sits flush right on the first line */
+.period { float: right; margin-left: 1em; font-size: 0.85rem; color: var(--muted); }
+.detail { display: block; color: var(--muted); }
+
+/* Figure 1: headshot floated beside the research section */
+.portrait { float: right; width: 38%; margin: 0.3em 0 1em 1.5rem; }
+figure { margin: 1.2em 0; }
+.portrait figure { margin: 0; }
+figure img { width: 100%; height: auto; display: block; }
+/* Typst emits captions as a plain <p> inside <figure>. */
+figure > p { font-size: 0.85rem; line-height: 1.4; margin: 0.7em 0 0; text-align: justify; }
+figure:has(table) > p { margin: 0 0 0.6em; }
+
+/* booktabs */
+table { border-collapse: collapse; width: 100%; font-size: 0.85rem; text-align: left; }
+th, td { padding: 0.25em 0.4em; vertical-align: top; }
+thead tr:first-child th { border-top: 1.5px solid var(--rule); }
+thead tr:last-child th { border-bottom: 0.8px solid var(--rule); }
+tbody tr:last-child td { border-bottom: 1.5px solid var(--rule); }
+td[colspan] { padding-top: 0.5em; }
+tbody tr:not(:first-child) td[colspan] { border-top: 0.5px solid var(--rule-light); }
+td:last-child, th:last-child { text-align: right; white-space: nowrap; }
+
+/* References */
+.reference { display: flex; gap: 0.6em; font-size: 0.88rem; margin: 0.45em 0; text-align: left; }
+.ref-num { flex: 0 0 2.2em; }
+figure:has(> .reference) { margin: 0; }
+
+@media (max-width: 600px) {
+  body { padding-top: 2rem; text-align: left; }
+  .summary { padding: 0; }
+  .portrait { float: none; width: 70%; margin: 1em auto; }
+  .period { float: none; display: block; margin: 0; }
+}
+@media print {
+  body { max-width: none; padding: 0; background: #fff; color: #000; }
+}
+
+/* Fixes that must come after the rules above */
+:is(p, div):has(> .period) { text-align: left; }
+td[colspan] { text-align: left; }
+@media (max-width: 600px) {
+  td:last-child, th:last-child { white-space: normal; }
+  figure:has(table) { overflow-x: auto; }
+}

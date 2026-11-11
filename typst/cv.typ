@@ -11,10 +11,30 @@
 #let muted = luma(105)
 #let phi = (1 + calc.sqrt(5)) / 2
 
+/* ---------- Output target ---------- */
+
+// The same source compiles to PDF (`typst compile`) and to HTML
+// (`typst compile --features html --format html`). Layout-only bits branch on the target;
+// on the web, `web.css` takes over spacing and typography.
+#let on-web(web, paged) = context if target() == "html" { web } else { paged }
+#let gap(amount) = on-web(none, v(amount))
+// Both branches are evaluated eagerly, and the `html` module only exists with `--features html`.
+#let el(tag, class: none, attrs: (:), body) = if "html" in dictionary(std) {
+  std.html.elem(tag, attrs: if class == none { attrs } else { attrs + (class: class) }, body)
+}
+
 /* ---------- Page & type ---------- */
 
 #set document(title: cv.name + " – Curriculum Vitae", author: cv.name)
-#set page(
+#show: doc => on-web(
+  {
+    el("style", read("web.css"))
+    doc
+  },
+  doc,
+)
+#show: doc => on-web(doc, {
+  set page(
   paper: "a4",
   margin: (x: 25mm, top: 20mm, bottom: 22mm),
   footer: context {
@@ -28,19 +48,27 @@
     h(1fr)
     counter(page).display("1 of 1", both: true)
   },
-)
+  )
+  doc
+})
 #set text(font: "New Computer Modern", size: 10pt)
 #set par(justify: true, leading: 0.58em, spacing: 0.8em)
 #set list(indent: 0.4em, body-indent: 0.5em, spacing: 0.5em)
 #show link: set text(fill: accent)
 
 #set heading(numbering: "1")
-#show heading.where(level: 1): it => block(sticky: true, above: 1.35em, below: 0.7em, {
-  set text(size: 11.5pt, weight: "bold")
-  counter(heading).display()
-  h(0.7em)
-  it.body
-})
+#show heading.where(level: 1): it => on-web(
+  el("h2", attrs: if it.has("label") { (id: str(it.label)) } else { (:) }, {
+    el("span", class: "num", counter(heading).display())
+    it.body
+  }),
+  block(sticky: true, above: 1.35em, below: 0.7em, {
+    set text(size: 11.5pt, weight: "bold")
+    counter(heading).display()
+    h(0.7em)
+    it.body
+  }),
+)
 
 #set figure(gap: 0.7em)
 #show figure.caption: it => {
@@ -60,15 +88,24 @@
 }
 
 // Small-print period that sits flush right on the entry's first line.
-#let period(from, to) = text(size: 9pt, fill: muted, dates(from, to))
+#let period(from, to) = on-web(el("span", class: "period", dates(from, to)), text(size: 9pt, fill: muted, dates(from, to)))
 
 #let org(o) = if o.link == none { o.name } else { link(o.link, o.name) }
 
 // Entry heading: bold title, then "where" with the period flush right, then an optional muted detail line.
 #let entry(title, where, when: none, detail: none) = {
-  [*#title* \ #where]
-  if when != none [#h(1fr)#period(..when)]
-  if detail != none [\ #text(fill: muted, detail)]
+  on-web(
+    {
+      if when != none { period(..when) }
+      [*#title* \ #where]
+      if detail != none { el("span", class: "detail", detail) }
+    },
+    {
+      [*#title* \ #where]
+      if when != none [#h(1fr)#period(..when)]
+      if detail != none [\ #text(fill: muted, detail)]
+    },
+  )
 }
 
 #let highlights(items) = if items.len() > 0 { list(..items) }
@@ -104,12 +141,14 @@
 #let reference(key, body) = [
   #figure(kind: ref-kind, supplement: none, numbering: "1", outlined: false, context {
     let n = counter(figure.where(kind: ref-kind)).get().first()
-    set align(left)
-    set text(size: 9pt)
-    grid(
-      columns: (1.8em, 1fr),
-      [[#n]], body,
-    )
+    on-web(el("div", class: "reference", el("span", class: "ref-num", [[#n]]) + el("span", body)), {
+      set align(left)
+      set text(size: 9pt)
+      grid(
+        columns: (1.8em, 1fr),
+        [[#n]], body,
+      )
+    })
   })
   #label(key)
 ]
@@ -123,45 +162,57 @@
 
 /* ---------- Title block ---------- */
 
-// #line(length: 100%, stroke: 2.4pt)
-#v(0.1em)
-#align(center)[
-  #text(size: 19pt, weight: "bold")[#cv.name] \
-  #v(0.35em)
-  #text(size: 10.5pt, style: "italic")[Curriculum Vitae]
-]
-#v(0.25em)
-// #line(length: 100%, stroke: 0.6pt)
-#v(0.15em)
-#align(center, text(size: 9pt)[
-  #v(0.2em)
-  #cv.headline \
-  #v(0.2em)
-  #set text(font: "DejaVu Sans Mono", size: 7.5pt, fill: accent)
-  #(
-    (
-      link("mailto:" + cv.contact.email, cv.contact.email),
-      link("https://github.com/" + cv.contact.github)[github.com/#cv.contact.github],
-      link("https://www.linkedin.com/in/" + cv.contact.linkedin)[linkedin.com/in/#cv.contact.linkedin],
-      //link("tel:" + cv.contact.phone.replace(" ", ""), cv.contact.phone),
-    )
-      .map(box)
-      .join[ #h(0.05em)·#h(0.05em) ]
-  )
-])
-#v(2em)
-#pad(x: 9mm, text(size: 9.5pt, cv.summary))
-#v(2em)
+#let contacts = (
+  link("mailto:" + cv.contact.email, cv.contact.email),
+  link("https://github.com/" + cv.contact.github)[github.com/#cv.contact.github],
+  link("https://www.linkedin.com/in/" + cv.contact.linkedin)[linkedin.com/in/#cv.contact.linkedin],
+  //link("tel:" + cv.contact.phone.replace(" ", ""), cv.contact.phone),
+)
+
+#on-web(
+  el("header", {
+    el("h1", cv.name)
+    el("p", class: "subtitle", [Curriculum Vitae])
+    el("p", class: "headline", cv.headline)
+    el("p", class: "contact", contacts.join[ · ])
+    // cv.pdf is deployed next to index.html (see .github/workflows/ci.yml).
+    el("p", class: "download", el("a", attrs: (href: "cv.pdf", download: cv.name.replace(" ", "-") + "-CV.pdf"), [Download PDF]))
+    el("div", class: "summary", cv.summary)
+  }),
+  [
+    // #line(length: 100%, stroke: 2.4pt)
+    #v(0.1em)
+    #align(center)[
+      #text(size: 19pt, weight: "bold")[#cv.name] \
+      #v(0.35em)
+      #text(size: 10.5pt, style: "italic")[Curriculum Vitae]
+    ]
+    #v(0.25em)
+    // #line(length: 100%, stroke: 0.6pt)
+    #v(0.15em)
+    #align(center, text(size: 9pt)[
+      #v(0.2em)
+      #cv.headline \
+      #v(0.2em)
+      #set text(font: "DejaVu Sans Mono", size: 7.5pt, fill: accent)
+      #contacts.map(box).join[ #h(0.05em)·#h(0.05em) ]
+    ])
+    #v(2em)
+    #pad(x: 9mm, text(size: 9.5pt, cv.summary))
+    #v(2em)
+  ],
+)
 
 /* ---------- Figure 1: wrapped headshot ---------- */
 
 // Text column : figure = φ : 1 (the same split as the classic two-column variant).
 #let fig-gutter = 6mm
 #let text-width = 210mm - 2 * 25mm
-#let portrait = box(width: (text-width - fig-gutter) / (1 + phi), figure(
-  image("images/headshot.jpg", width: 100%),
+#let portrait-figure = figure(
+  image("images/headshot.jpg", width: 100%, alt: "Portrait of " + cv.name),
   caption: [#cv.about],
-))
+)
+#let portrait = box(width: (text-width - fig-gutter) / (1 + phi), portrait-figure)
 
 /* ---------- Body ---------- */
 
@@ -176,9 +227,9 @@
   = Research <sec-research>
 
   #entry(r.title, [#r.position, #link(r.group.link, r.group.name)], when: (r.from, r.to)) \
-  #v(0.5em)
+  #gap(0.5em)
   #r.institution, in collaboration with the #r.collaboration; supervised by #r.supervisor.
-  #v(0.5em)
+  #gap(0.5em)
   #r.explainer
 
 ]
@@ -201,12 +252,18 @@
 
 // Only the text beside the figure goes through meander (it handles plain paragraphs best);
 // whatever does not fit next to it overflows into the normal flow below.
-#context meander.reflow({
-  import meander: *
-  placed(top + right, boundary: contour.margin(left: fig-gutter, bottom: 2mm), portrait)
-  container()
-  content(body)
-})
+#on-web(
+  {
+    el("div", class: "portrait", portrait-figure)
+    body
+  },
+  meander.reflow({
+    import meander: *
+    placed(top + right, boundary: contour.margin(left: fig-gutter, bottom: 2mm), portrait)
+    container()
+    content(body)
+  }),
+)
 
 #after-wrap
 
@@ -217,7 +274,7 @@
   #job.description
   #highlights(job.highlights)
   #parbreak()
-  #v(1em)
+  #gap(1em)
 ]
 
 = Teaching
@@ -247,7 +304,7 @@
   #p.description
   // #if p.tags.len() > 0 [_Stack:_ #p.tags.join(", ").]
   #parbreak()
-  #v(1em)
+  #gap(1em)
 ]
 
 // = Skills

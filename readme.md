@@ -20,17 +20,17 @@ To add an experience or project entry, create the file and add its name to `cv.y
 
 `typst/lib/content.typ` loads everything into one dictionary (`load-cv()`) that every layout uses.
 
-## Layouts
+## Build
 
-| Variant | Source | PDF |
-| --- | --- | --- |
-| Classic (two-column) | `typst/cv.typ` | [cv.pdf](https://benedict-armstrong.github.io/typstCV/cv.pdf) |
-| Modern (single-column) | `typst/cv-modern.typ` | [cv-modern.pdf](https://benedict-armstrong.github.io/typstCV/cv-modern.pdf) |
-| Paper (NeurIPS-style) | `typst/cv-paper.typ` | [cv-paper.pdf](https://benedict-armstrong.github.io/typstCV/cv-paper.pdf) |
-| Academic (paper typography, wrapped headshot figure) | `typst/cv-academic.typ` | [cv-academic.pdf](https://benedict-armstrong.github.io/typstCV/cv-academic.pdf) |
+`typst/cv.typ` renders both a PDF and an HTML page from the same source (Typst ≥ 0.15):
 
-Build locally with `typst compile --font-path fonts typst/<variant>.typ` (Typst ≥ 0.15).
+```sh
+typst compile --font-path fonts typst/cv.typ                                     # → typst/cv.pdf
+typst compile --font-path fonts --features html --format html typst/cv.typ cv.html  # → cv.html
+```
+
+HTML export is still experimental in Typst. Layout-only parts of `cv.typ` branch on `target()`, and the page is styled by `typst/web.css`, which is inlined at compile time.
 
 ## Deploy
 
-The CV is deployed automatically to GitHub pages using GitHub actions.
+The CV is deployed automatically to GitHub Pages using GitHub Actions: the HTML version at [benedict-armstrong.github.io/typstCV](https://benedict-armstrong.github.io/typstCV/), the PDF at [cv.pdf](https://benedict-armstrong.github.io/typstCV/cv.pdf).
