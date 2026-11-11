@@ -33,6 +33,6 @@
   year: 2026
   link: "https://neurips.cc/virtual/2026/loc/sydney/poster/139305"
   summary: >-
-      A benchmark of high-precision time series from gravitational-wave detection, dark matter searches,
+      A benchmark of physics time series from gravitational-wave detection, dark matter searches,
       neutrino mass measurement and exoplanet discovery, with standard tasks, splits and baselines for
       denoising, signal recovery and parameter estimation.

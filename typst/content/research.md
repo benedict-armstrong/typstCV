@@ -19,8 +19,7 @@ tags: [Python, PyTorch, PyTorch Lightning, JAX, Equinox]
 
 <!-- PLACEHOLDER: the short explainer. -->
 
-When two neutron stars spiral into each other, they send ripples through spacetime that LIGO measures as
-length changes far smaller than a proton. These signals can last minutes and are buried in non-stationary,
-glitchy detector noise, while astronomers need an alert within seconds to point telescopes at the merger.
-I work on Linear Oscillatory State-Space Models (LinOSS): sequence models that handle very long inputs
-efficiently and make it possible to detect binary neutron star mergers in real time.
+//When two neutron stars spiral into each other, they send ripples through spacetime that LIGO measures as length changes far smaller than a proton. 
+
+Gravitational-wave signals can last minutes and are buried in non-stationary, glitchy detector noise, while astronomers need an alert within seconds to point telescopes at the merger. I worked on Linear Oscillatory State-Space Models (LinOSS): sequence models that handle very long inputs
+efficiently and towards making it possible to detect binary neutron star mergers in real time.
