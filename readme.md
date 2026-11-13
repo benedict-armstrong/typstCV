@@ -9,14 +9,14 @@ Typst version of my CV. Content lives in `typst/content/`, separate from the lay
 | `cv.yaml` | Section order for the one-file-per-entry folders |
 | `profile.md` | Name, headline and contact (frontmatter); short summary (body) |
 | `about.md` | Personal bio (caption of the headshot figure) |
-| `research.md` | Current research position (frontmatter); explainer (body) |
-| `experience/*.md`, `projects/*.md` | One entry per file: fields in frontmatter, description in the body |
+| `research/gravitational-waves.md` | Main research position, with publications and talks (frontmatter); explainer (body) |
+| `experience/*.md`, `projects/*.md`, `research/*.md` | One entry per file: fields in frontmatter, description in the body |
 | `education.yaml`, `teaching.yaml`, `skills.yaml` | Tabular data |
 | `publications.yaml`, `talks.yaml` | References; `key` is the citation label |
 
 Markdown bodies are rendered with [cmarker](https://typst.app/universe/package/cmarker); short text fields in YAML accept inline Markdown too.
 Dates use `from`/`to`: `to: present` means ongoing, no `to` means a single point in time.
-To add an experience or project entry, create the file and add its name to `cv.yaml`.
+To add an experience, project or research entry, create the file and add its name to `cv.yaml`.
 
 `typst/lib/content.typ` loads everything into one dictionary (`load-cv()`) that every layout uses.
 

@@ -102,7 +102,7 @@
     },
     {
       [*#title* \ #where]
-      if when != none [#h(1fr)#period(..when)]
+      if when != none [#h(1em)#h(1fr)#box(period(..when))]
       if detail != none [\ #text(fill: muted, detail)]
     },
   )
@@ -156,7 +156,7 @@
 #let author-list(authors, max: 6) = {
   let fmt(a) = if a == cv.name [*#a*] else [#a]
   if authors.len() <= max { authors.map(fmt).join(", ", last: " and ") } else {
-    authors.slice(0, max).map(fmt).join(", ") + [, et al.]
+    authors.slice(0, max).map(fmt).join(", ") + [, et al]  // callers add the period
   }
 }
 
@@ -226,6 +226,14 @@
 
   = Research <sec-research>
 
+  #for e in r.projects [
+    #block(sticky: true, below: 0.55em, entry(e.title, [#e.position, #org(e.group)], when: (e.from, e.to)))
+    #e.description
+    #highlights(e.highlights)
+    #parbreak()
+    #gap(1em)
+  ]
+
   #entry(r.title, [#r.position, #link(r.group.link, r.group.name)], when: (r.from, r.to)) \
   #gap(0.5em)
   #r.institution, in collaboration with the #r.collaboration; supervised by #r.supervisor.
@@ -246,7 +254,7 @@
     reference(p.key)[#author-list(p.authors). #link(p.link)[#p.title]. In #emph(p.venue), #p.location, #p.year.]
   }
   #for t in r.talks {
-    reference(t.key)[#t.speaker. #link(t.link)[#t.title]. Talk at #emph(t.event), #t.venue, #t.date.]
+    reference(t.key)[#author-list(t.authors). #link(t.link)[#t.title]. Talk at #emph(t.event), #t.venue, #t.date#if t.speaker != cv.name [, presented by #t.speaker].]
   }
 ]
 

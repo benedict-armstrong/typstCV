@@ -7,6 +7,11 @@
 # Dates: `from`/`to`; `to: present` means ongoing, no `to` means a single point in time.
 # Short text fields in frontmatter and YAML (highlights, descriptions) also accept inline Markdown.
 
+# Research entries besides the main position in research/gravitational-waves.md, newest first.
+research:
+    - rsl-world-models
+    - ethrc-robot-learning
+
 experience:
     - armstrong-systems
     - lehrfem

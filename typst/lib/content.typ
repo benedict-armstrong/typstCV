@@ -36,11 +36,21 @@
   let manifest = yaml(dir + "cv.yaml")
 
   let (profile, summary) = md-file("profile.md")
-  let (research, explainer) = md-file("research.md")
+  let (research, explainer) = md-file("research/gravitational-waves.md")
   research = norm-dates(research)
   research.explainer = explainer
   research.highlights = md-list(research.at("highlights", default: ()))
   research.talks = yaml(dir + "talks.yaml")
+
+  research.projects = manifest.at("research", default: ()).map(slug => {
+    let (meta, body) = md-file("research/" + slug + ".md")
+    meta = norm-dates(meta)
+    meta.group.link = meta.group.at("link", default: none)
+    meta.description = body
+    meta.highlights = md-list(meta.at("highlights", default: ()))
+    meta.tags = meta.at("tags", default: ())
+    meta
+  })
 
   let jobs = manifest.experience.map(slug => {
     let (meta, body) = md-file("experience/" + slug + ".md")

@@ -1,5 +1,15 @@
 - key: talk-cern
   title: Linear Oscillatory State-Space Models for Binary Neutron Star Detection
+  # Order as on the Indico contribution page.
+  authors:
+      - Benedict Armstrong
+      - Bhavya Gupta
+      - Christina Reissel
+      - Erik Katsavounidis
+      - Kyungseop Yoon
+      - Philip Harris
+      - T. Konstantin Rusch
+      - Will Benoit
   speaker: Benedict Armstrong
   event: AI for Gravitational Waves Workshop
   venue: CERN, Geneva
@@ -7,6 +17,11 @@
   link: "https://indico.cern.ch/event/1640502/contributions/7028117/"
 - key: talk-fastml
   title: Direct Parameter Estimation of Binary Neutron Star Mergers with State Space Models
+  authors:
+      - Kyungseop Yoon
+      - Benedict Armstrong
+      - Christina Reissel
+      - Philip Harris
   speaker: Kevin (Kyungseop) Yoon
   event: Fast Machine Learning for Science Conference 2026
   venue: UC San Diego
