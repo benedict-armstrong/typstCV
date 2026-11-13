@@ -35,19 +35,19 @@
 )
 #show: doc => on-web(doc, {
   set page(
-  paper: "a4",
-  margin: (x: 25mm, top: 20mm, bottom: 22mm),
-  footer: context {
-    set text(size: 8pt, fill: muted)
-    let n = counter(page).get().first()
-    // if n == 1 [
-    //   _Curriculum Vitae. Compiled #datetime.today().display("[month repr:long] [year]")._
-    // ] else [
-    //   _#cv.name — Curriculum Vitae_
-    // ]
-    h(1fr)
-    counter(page).display("1 of 1", both: true)
-  },
+    paper: "a4",
+    margin: (x: 25mm, top: 20mm, bottom: 22mm),
+    footer: context {
+      set text(size: 8pt, fill: muted)
+      let n = counter(page).get().first()
+      // if n == 1 [
+      //   _Curriculum Vitae. Compiled #datetime.today().display("[month repr:long] [year]")._
+      // ] else [
+      //   _#cv.name — Curriculum Vitae_
+      // ]
+      h(1fr)
+      counter(page).display("1 of 1", both: true)
+    },
   )
   doc
 })
@@ -58,10 +58,14 @@
 
 #set heading(numbering: "1")
 #show heading.where(level: 1): it => on-web(
-  el("h2", attrs: if it.has("label") { (id: str(it.label)) } else { (:) }, {
-    el("span", class: "num", counter(heading).display())
-    it.body
-  }),
+  el(
+    "h2",
+    attrs: if it.has("label") { (id: str(it.label)) } else { (:) },
+    {
+      el("span", class: "num", counter(heading).display())
+      it.body
+    },
+  ),
   block(sticky: true, above: 1.35em, below: 0.7em, {
     set text(size: 11.5pt, weight: "bold")
     counter(heading).display()
@@ -88,7 +92,10 @@
 }
 
 // Small-print period that sits flush right on the entry's first line.
-#let period(from, to) = on-web(el("span", class: "period", dates(from, to)), text(size: 9pt, fill: muted, dates(from, to)))
+#let period(from, to) = on-web(el("span", class: "period", dates(from, to)), text(size: 9pt, fill: muted, dates(
+  from,
+  to,
+)))
 
 #let org(o) = if o.link == none { o.name } else { link(o.link, o.name) }
 
@@ -156,7 +163,7 @@
 #let author-list(authors, max: 6) = {
   let fmt(a) = if a == cv.name [*#a*] else [#a]
   if authors.len() <= max { authors.map(fmt).join(", ", last: " and ") } else {
-    authors.slice(0, max).map(fmt).join(", ") + [, et al]  // callers add the period
+    authors.slice(0, max).map(fmt).join(", ") + [, et al] // callers add the period
   }
 }
 
@@ -176,7 +183,11 @@
     el("p", class: "headline", cv.headline)
     el("p", class: "contact", contacts.join[ · ])
     // cv.pdf is deployed next to index.html (see .github/workflows/ci.yml).
-    el("p", class: "download", el("a", attrs: (href: "cv.pdf", download: cv.name.replace(" ", "-") + "-CV.pdf"), [Download PDF]))
+    el("p", class: "download", el(
+      "a",
+      attrs: (href: "cv.pdf", download: cv.name.replace(" ", "-") + "-CV.pdf"),
+      [Download PDF],
+    ))
     el("div", class: "summary", cv.summary)
   }),
   [
@@ -254,7 +265,9 @@
     reference(p.key)[#author-list(p.authors). #link(p.link)[#p.title]. In #emph(p.venue), #p.location, #p.year.]
   }
   #for t in r.talks {
-    reference(t.key)[#author-list(t.authors). #link(t.link)[#t.title]. Talk at #emph(t.event), #t.venue, #t.date#if t.speaker != cv.name [, presented by #t.speaker].]
+    reference(
+      t.key,
+    )[#author-list(t.authors). #link(t.link)[#t.title]. Talk at #emph(t.event), #t.venue, #t.date#if t.speaker != cv.name [, presented by #t.speaker].]
   }
 ]
 
